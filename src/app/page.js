@@ -42,8 +42,19 @@ export default function Home() {
       alert('something went wrong')
     })
   },[])
+
+  let searchitem=(e)=>{
+    let data=e.target.value;
+    axios.get(`https://dummyjson.com/products/search?q=${data}`)
+    .then((ress)=>{
+      setProducts(ress.data.products)
+    })
+  }
   return (
     <>
+    <div className="w-[700px] mx-auto  ">
+          <input type="text" onChange={searchitem} placeholder="Search" className="w-100 p-2 bg-slate-500 m-2 " />
+    </div>
       <div className="w-full grid grid-cols-[25%_auto] gap-2 ">
         <div className=" h-[100vh] overflow-y-scroll">
 
